@@ -2,6 +2,9 @@ const playBoard = document.querySelector(".play-board");
 const scoreElement = document.querySelector(".score");
 const highScoreElement = document.querySelector(".high-score");
 const controls = document.querySelectorAll(".controls i");
+const startBtn = document.getElementById("startBtn");
+const bgMusic = document.getElementById("bgMusic");
+const gameOverSound = document.getElementById("gameOverSound");
 
 let gameOver = false;
 let foodX, foodY;
@@ -21,8 +24,12 @@ const changeFoodPosition = () => {
 
 const handleGameOver = () => {
     clearInterval(setIntervalId);
+    bgMusic.pause();
+    gameOverSound.play();
+
+    // Tampilkan modal game over
     document.getElementById("gameOverModal").style.display = "flex";
-}
+};
 
 const restartGame = () => {
     location.reload();
@@ -85,6 +92,11 @@ const initGame = () => {
     }
     playBoard.innerHTML = htmlMarkup;
 }
-changeFoodPosition();
-setIntervalId = setInterval(initGame, 150);
-document.addEventListener("keydown", changeDirection);
+
+startBtn.addEventListener("click", () => {
+    startBtn.style.display = "none";
+    changeFoodPosition();
+    bgMusic.play();
+    document.addEventListener("keydown", changeDirection); // << dipasang di sini
+    setIntervalId = setInterval(initGame, 125);
+});
