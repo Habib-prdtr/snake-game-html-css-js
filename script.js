@@ -98,5 +98,5 @@ startBtn.addEventListener("click", () => {
     changeFoodPosition();
     bgMusic.play();
     document.addEventListener("keydown", changeDirection); // << dipasang di sini
-    setIntervalId = setInterval(initGame, 150);
+    setIntervalId = setInterval(initGame, 190);
 });
