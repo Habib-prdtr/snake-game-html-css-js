@@ -1,27 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
 
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
-}
-body{
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
     background: #E3F2FD;
 }
-.wrapper {
-    width: 65vmin;
-    height: 70vmin;
-    display: flex;
-    overflow: hidden;
-    flex-direction: column;
-    border-radius: 5px;
-    background: #293447;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+
+/* Wrapper: Kotak permainan */
+.wrapper {
+  position: relative;
+  width: 65vmin;
+  height: 70vmin;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  border-radius: 5px;
+  background: #293447;
+}
+
 .game-details{
     color: #B8C6DC;
     font-size: 1.2rem;
@@ -30,42 +45,55 @@ body{
     display: flex;
     justify-content: space-between;
 }
-.play-board{
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template: repeat(30, 1fr) / repeat(30, 1fr);
-    background: #212837;
-}
-.play-board .food{
-    background: #FF003C;
-} 
-.play-board .head{
-    background: #00eeff;
-} 
-.controls{
-    display: none;
-    justify-content: space-between;
-}
-.controls i{
-    padding: 25px 0;
-    color: #B8C6DC;
-    text-align: center;
-    cursor: pointer;
-    font-size: 1.3rem;
-    width: calc(100% / 4);
-    border-right: 1px solid #171b26;
+
+.play-board {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template: repeat(30, 1fr) / repeat(30, 1fr);
+  background: #212837;
+
+  /* Tambahkan ini untuk grid tipis */
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: calc(100% / 30) calc(100% / 30);
 }
 
+.play-board .food {
+  background: #FF003C;
+}
+
+.play-board .head {
+  background: #00eeff;
+}
+
+/* Tombol arah di mobile */
+.controls {
+  display: none;
+  justify-content: space-between;
+}
+
+.controls i {
+  padding: 25px 0;
+  color: #B8C6DC;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.3rem;
+  width: calc(100% / 4);
+  border-right: 1px solid #171b26;
+}
+
+/* Modal Game Over */
 .game-over-modal {
-  display: none; /* Sembunyikan dulu */
+  display: none;
   position: fixed;
   z-index: 999;
   left: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0, 0, 0, 0.7);
   justify-content: center;
   align-items: center;
 }
@@ -99,8 +127,9 @@ body{
   background-color: #3e8e41;
 }
 
+/* Tombol Start Game */
 #startBtn {
-  position: fixed;
+  position: absolute; /* dari fixed menjadi absolute */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -111,29 +140,98 @@ body{
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  z-index: 9999;
+  z-index: 10;
   box-shadow: 0 4px 6px rgba(0,0,0,0.3);
   user-select: none;
   touch-action: manipulation;
 }
+
 #startBtn:active {
   background-color: #45a049;
 }
 
+.snake-skin-selector {
+  border-radius: 20px;
+  margin-top: 20px;
+  padding: 15px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #f9d976, #f39f86);
+  box-shadow: 0 8px 20px rgba(237, 179, 86, 0.4);
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  user-select: none;
+}
+
+.snake-skin-selector label {
+  display: block;
+  margin-bottom: 15px;
+  color: #293447;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-shadow: 1px 1px 2px rgba(255 255 255 / 0.6);
+}
+
+.snake-skin-selector button {
+  width: 36px;
+  height: 36px;
+  margin: 8px;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  outline-offset: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  vertical-align: middle;
+}
+
+.snake-skin-selector button:hover,
+.snake-skin-selector button:focus {
+  border-color: #fff;
+  box-shadow: 0 0 10px 3px rgba(237, 179, 86, 0.75);
+  transform: scale(1.15);
+}
+
+.snake-skin-selector button:active {
+  transform: scale(1.05);
+  box-shadow: 0 0 7px 2px rgba(237, 179, 86, 0.9);
+}
+
+
+/* Responsif untuk HP */
 @media screen and (max-width: 600px) {
-    .wrapper{
-        width: 90vmin;
-        height: 115vmin;
-    }
-    .game-details{
-        font-size: 1rem;
-        padding: 15px 27px;
-    }
-    .controls{
-        display: flex;
-    }
-    .controls i{
-        padding: 15px 0;
-        font-size: 1rem;
-    }
+  body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wrapper {
+    width: 90vmin;
+    height: 115vmin;
+  }
+
+  .game-details {
+    font-size: 1rem;
+    padding: 15px 27px;
+  }
+
+  .controls {
+    display: flex;
+  }
+
+  .controls i {
+    padding: 15px 0;
+    font-size: 1rem;
+  }
+
+  .snake-skin-selector {
+    width: auto;
+    margin-top: 15px;
+  }
 }

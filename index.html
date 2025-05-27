@@ -11,22 +11,27 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-
-  <!-- Tombol Start Game -->
-  <button id="startBtn">Start Game</button>
-
-  <div class="wrapper">
-    <div class="game-details">
-      <span class="score">Score: 0</span>
-      <span class="high-score">High Score: 0</span>
+  <div class="container">
+    <div class="wrapper">
+      <button id="startBtn">Start Game</button>
+      <div class="game-details">
+        <span class="score">Score: 0</span>
+        <span class="high-score">High Score: 0</span>
+      </div>
+      <div class="play-board"></div>
+      <div class="controls">
+        <i data-key="ArrowLeft" class="fas fa-arrow-left"></i>
+        <i data-key="ArrowUp" class="fas fa-arrow-up"></i>
+        <i data-key="ArrowRight" class="fas fa-arrow-right"></i>
+        <i data-key="ArrowDown" class="fas fa-arrow-down"></i>
+      </div>
     </div>
-    <div class="play-board"></div>
-    <div class="controls">
-      <i data-key="ArrowLeft" class="fas fa-arrow-left"></i>
-      <i data-key="ArrowUp" class="fas fa-arrow-up"></i>
-      <i data-key="ArrowRight" class="fas fa-arrow-right"></i>
-      <i data-key="ArrowDown" class="fas fa-arrow-down"></i>
-    </div>
+
+    <!-- Pindahkan snake-skin-selector KE SINI, di dalam container -->
+    <div class="snake-skin-selector">
+    <label for="snakeColorPicker">Pilih Warna Ular:</label><br />
+    <input type="color" id="snakeColorPicker" value="#00eeff" />
+  </div>
   </div>
 
   <!-- Modal Game Over -->
@@ -43,5 +48,6 @@
   <audio id="bgMusic" src="2.mp3" loop></audio>
   <audio id="gameOverSound" src="1.mp3"></audio>
 </body>
+
 </html>
 
