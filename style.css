@@ -15,8 +15,20 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #E3F2FD;
+    background-image: url('desktop.png'); /* Gambar untuk desktop */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
+/* Untuk layar berukuran maksimal 768px (umumnya mobile) */
+@media (max-width: 768px) {
+    body {
+        background-image: url('mobile.jpg'); /* Gambar untuk mobile */
+    }
+}
+
+
 
 .container {
   display: flex;
